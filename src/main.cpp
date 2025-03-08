@@ -3,6 +3,7 @@
 #include "vector.h"
 #include "mesh.h"
 #include <algorithm>
+#include <string_view>
 
 std::vector<triangle_t> triangle_to_render{};
 vec3_t camera_position{0.0f,0.0f,0.0f};
@@ -17,7 +18,7 @@ bool sort_type(triangle_t t1,triangle_t t2)
     return (t1.avg_depth < t2.avg_depth);
 }
 
-void setup()
+void setup(std::string_view str)
 {
     render_mode = Render_Mode::Wireframe;
     cull_method = Backface_Culling_Mode::On;
@@ -33,7 +34,7 @@ void setup()
         color_buffer_texture = nullptr;
     }
 
-    load_obj_file("../assets/drone.obj");
+    load_obj_file(static_cast<std::string>(str));
 }
 
 void process_input()
@@ -204,11 +205,11 @@ void free_resources()
     mesh.faces.clear();
 }
 
-int main(void)
+int main(int agrc, char*argv[])
 {
     is_running = initialize_window();
 
-    setup();
+    setup(argv[1]);
 
     while(is_running)
     {

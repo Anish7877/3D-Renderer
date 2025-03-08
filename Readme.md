@@ -2,4 +2,4 @@ To Build:
 make build
 
 To run:
-make run
+./Renderer <path-obj-file>
