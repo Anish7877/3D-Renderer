@@ -15,3 +15,7 @@ To run:
 ```
 
 Where `path-obj-file` is the path to your OBJ model file.
+
+```
+Note :- Vertex count should be small due to cpu limitations
+```
